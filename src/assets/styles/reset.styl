@@ -20,7 +20,7 @@ reset()
 
   body
     position relative
-    overflow-y scroll!important
+    overflow-y scroll !important
 
   [hidden]
     display none !important
@@ -39,6 +39,48 @@ reset();
 .inherit
   width 100%
   height 100%
+
+.field-container
+  font-size 18px
+
+input[type=text]
+  padding 10px 20px !important
+  margin-bottom 0 !important
+  font-size 18px !important
+
+input[type=password], input[type=number]
+  @extend input[type=text]
+
+label>input
+  margin-top 8px !important
+
+label>select, label>textarea
+  @extend label>input
+
+.group
+  margin 8px 0!important
+  .group-header
+    font-size 18px!important
+    padding 0!important
+    color #333!important
+  .group-body
+    margin-top 8px!important
+    margin-bottom 8px!important
+
+.item-checkbox .field-label,
+.item-radio .field-label
+  padding-top 8px!important
+  padding-bottom 8px!important
+.item-checkbox input+.field-icon,
+.item-radio input+.field-icon
+  font-size 37.5px!important
+.item
+  min-height auto!important
+  padding 0!important
+  border none!important
+  &.item-radio
+    border: 1px solid #bbb!important;/*no*/
+
 
 
 
