@@ -9,22 +9,22 @@ class Login extends Component {
     super(props);
     this.state = {
       radioValue: 'person',
-      htmlHeight:null,
       isFinish:false
     };
     this.getRadioValue = this.getRadioValue.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  componentDidMount() {
-    this.setState({htmlHeight:document.body.offsetHeight})
+    this.toProgress = this.toProgress.bind(this);
   }
 
   getRadioValue(e) {
     this.setState({radioValue:e});
   }
-  handleSubmit(){
+  handleSubmit(){/*提交表单*/
     this.setState({isFinish:true});
+    setTimeout(this.toProgress,1500);
+  }
+  toProgress(){
+    this.props.history.push('/progress');
   }
   radioComponent(radioValue){
     return (
@@ -47,13 +47,13 @@ class Login extends Component {
      <div>
        {
          !isFinish &&
-         <Tabs style={{height:this.state.htmlHeight+'px'}}>
+         <Tabs>
            <Tabs.Item title="登录">
              <div className="login-box">
                <Field placeholder="请输入手机号" labelBefore={<Icon name="info" />} type="text" />
                <Field placeholder="密码" labelBefore={<Icon name="person" />} type="password" />
                <label className="remember-box"><input type="checkbox" name="agree"/>下次自动登录</label>
-               <Button amStyle="primary" block={true}>登录</Button>
+               <Button amStyle="primary" block={true} onClick={this.toProgress}>登录</Button>
              </div>
            </Tabs.Item>
            <Tabs.Item title="注册">
@@ -112,7 +112,7 @@ class Login extends Component {
        }
        {
          isFinish &&
-         <div className="finish-box" style={{height:this.state.htmlHeight+'px'}}>
+         <div className="finish-box">
            <div className="check-group">
              <Icon name="check"/>
              <h1>申请成功</h1>

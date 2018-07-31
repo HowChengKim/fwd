@@ -10,6 +10,7 @@ const Steps = (stepData) => {
           <span className="step-point">{index+1}</span>
           <h3>{o.title}</h3>
           <div>{o.msg}</div>
+          {o.date && <p>{o.date}</p>}
         </div>
       )
     );

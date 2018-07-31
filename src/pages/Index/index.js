@@ -52,7 +52,7 @@ class Index extends Component {
   }
   render() {
     return (
-      <div>
+      <div style={{backgroundColor:'#f4f4f4'}}>
         <div style={{backgroundColor:'white'}}>
           {sliderCaption}
           <h1 className="index-title">法务贷四大特点</h1>
