@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Field, List,Group,Button,Tabs} from 'amazeui-touch';
+import {Field, List,Group,Button,Tabs,Icon} from 'amazeui-touch';
 import './Login.styl';
 
 const radioData = [{label:'个人',value:'person'},{label:'公司',value:'company'}];
@@ -8,12 +8,15 @@ class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      radioValue: 'person'
+      radioValue: 'person',
+      htmlHeight:null
     };
     this.getRadioValue = this.getRadioValue.bind(this);
   }
 
   componentDidMount() {
+    console.log(document.body.offsetHeight);
+    this.setState({htmlHeight:document.body.offsetHeight})
   }
 
   getRadioValue(e) {
@@ -37,8 +40,14 @@ class Login extends Component {
   render() {
     let radioValue = this.state.radioValue;
     return (
-      <Tabs>
+      <Tabs style={{height:this.state.htmlHeight+'px'}}>
         <Tabs.Item title="登录">
+          <div className="login-box">
+            <Field placeholder="请输入手机号" labelBefore={<Icon name="info" />} type="text" />
+            <Field placeholder="密码" labelBefore={<Icon name="person" />} type="password" />
+            <label className="remember-box"><input type="checkbox" name="agree"/>下次自动登录</label>
+            <Button amStyle="primary" block={true}>登录</Button>
+          </div>
         </Tabs.Item>
         <Tabs.Item title="注册">
           <div className="login-box">
