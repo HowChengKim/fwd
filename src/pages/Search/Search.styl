@@ -1,0 +1,89 @@
+.search-box
+  background-color #f4f4f4
+  .select-group
+    background-color white
+    padding 20px 10px
+    .title
+      font-size 20px
+      text-align center
+      margin-bottom 10px
+      position relative
+      &:after
+        content ''
+        position absolute
+        top 200%
+        left 0
+        width 100%
+        height: 1px;/*no*/
+        background-color #ccc
+    .subtitle
+      position absolute
+      font-size 18px
+      width 200px
+      text-align center
+      background-color white
+      margin 0
+      padding 0 10px
+      display inline
+      left 50%
+      transform translateX(-50%)
+    .title-tip
+      font-size 12px
+      margin-top 50px
+      margin-bottom 20px
+      text-align center
+.field-group-label
+  padding 0!important
+  border-color rgba(16, 142, 233, 1)!important
+  &:first-child
+    border-radius 6px!important
+    border-top-right-radius 0!important
+    border-bottom-right-radius 0!important
+  &:last-child
+    border-radius 6px!important
+    border-top-left-radius 0!important
+    border-bottom-left-radius 0!important
+select
+  &.field
+    width 70px
+    border none
+    margin 0
+    padding 3px 0 3px 3px
+    font-size 12px
+    background-color white
+    background-position right 4px center
+    &:hover
+      background-color white
+input[type=text]
+  &.field
+    flex 0 0 auto
+    width 230px
+    border-color rgba(16, 142, 233, 1)
+    border-left none
+    border-right none
+    font-size 12px!important
+    padding 15px 0!important
+  &:hover
+    border-color rgba(16, 142, 233, 1)!important
+.search-btn
+  background-color rgba(16, 142, 233, 1)
+  color white
+  width 50px
+  text-align center
+  height 100%
+  line-height 3.3
+  font-size 12px
+  border-radius 6px!important
+  margin-top 1px
+  margin-left 3px
+  border: 1px solid rgb(16, 142, 233);
+  border-top-left-radius 0!important
+  border-bottom-left-radius 0!important
+.search-history
+  display flex
+  flex-flow row wrap
+  margin-top 20px
+  >span
+    font-size 12px
+    margin 0 11px
+
