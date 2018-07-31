@@ -9,18 +9,22 @@ class Login extends Component {
     super(props);
     this.state = {
       radioValue: 'person',
-      htmlHeight:null
+      htmlHeight:null,
+      isFinish:false
     };
     this.getRadioValue = this.getRadioValue.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount() {
-    console.log(document.body.offsetHeight);
     this.setState({htmlHeight:document.body.offsetHeight})
   }
 
   getRadioValue(e) {
     this.setState({radioValue:e});
+  }
+  handleSubmit(){
+    this.setState({isFinish:true});
   }
   radioComponent(radioValue){
     return (
@@ -38,70 +42,85 @@ class Login extends Component {
     )
   }
   render() {
-    let radioValue = this.state.radioValue;
+    let {radioValue,isFinish} = this.state;
     return (
-      <Tabs style={{height:this.state.htmlHeight+'px'}}>
-        <Tabs.Item title="登录">
-          <div className="login-box">
-            <Field placeholder="请输入手机号" labelBefore={<Icon name="info" />} type="text" />
-            <Field placeholder="密码" labelBefore={<Icon name="person" />} type="password" />
-            <label className="remember-box"><input type="checkbox" name="agree"/>下次自动登录</label>
-            <Button amStyle="primary" block={true}>登录</Button>
-          </div>
-        </Tabs.Item>
-        <Tabs.Item title="注册">
-          <div className="login-box">
-            {this.radioComponent(radioValue)}
-            <Group header="手机号:" noPadded>
-              <List>
-                <List.Item>
-                  <Field placeholder="请输入手机号" type="number" />
-                </List.Item>
-              </List>
-            </Group>
-            <Group header="姓名:" noPadded>
-              <List>
-                <List.Item>
-                  <Field placeholder="请输入姓名" type="text" />
-                </List.Item>
-              </List>
-            </Group>
-            <Group header="身份证号码:" noPadded>
-              <List>
-                <List.Item>
-                  <Field placeholder="请输入身份证号码" type="text" />
-                </List.Item>
-              </List>
-            </Group>
-            <Group header="贷款金额(元):" noPadded>
-              <List>
-                <List.Item>
-                  <Field placeholder="请输入贷款金额" type="number" />
-                </List.Item>
-              </List>
-            </Group>
-            <Group header="所在律所:" noPadded>
-              <List>
-                <List.Item>
-                  <Field placeholder="请输入所在律所" type="text" />
-                </List.Item>
-              </List>
-            </Group>
-            <Group header="公司名称:" noPadded>
-              <List>
-                <List.Item>
-                  <Field placeholder="请输入公司名称" type="text" />
-                </List.Item>
-              </List>
-            </Group>
-            <Button className="login-button">提交</Button>
-            <div className="reader-box">
-              <label><input type="checkbox" name="agree"/>阅读并同意</label>
-              <span>《法务贷服务协议》</span>
-            </div>
-          </div>
-        </Tabs.Item>
-      </Tabs>
+     <div>
+       {
+         !isFinish &&
+         <Tabs style={{height:this.state.htmlHeight+'px'}}>
+           <Tabs.Item title="登录">
+             <div className="login-box">
+               <Field placeholder="请输入手机号" labelBefore={<Icon name="info" />} type="text" />
+               <Field placeholder="密码" labelBefore={<Icon name="person" />} type="password" />
+               <label className="remember-box"><input type="checkbox" name="agree"/>下次自动登录</label>
+               <Button amStyle="primary" block={true}>登录</Button>
+             </div>
+           </Tabs.Item>
+           <Tabs.Item title="注册">
+             <div className="login-box">
+               {this.radioComponent(radioValue)}
+               <Group header="手机号:" noPadded>
+                 <List>
+                   <List.Item>
+                     <Field placeholder="请输入手机号" type="number" />
+                   </List.Item>
+                 </List>
+               </Group>
+               <Group header="姓名:" noPadded>
+                 <List>
+                   <List.Item>
+                     <Field placeholder="请输入姓名" type="text" />
+                   </List.Item>
+                 </List>
+               </Group>
+               <Group header="身份证号码:" noPadded>
+                 <List>
+                   <List.Item>
+                     <Field placeholder="请输入身份证号码" type="text" />
+                   </List.Item>
+                 </List>
+               </Group>
+               <Group header="贷款金额(元):" noPadded>
+                 <List>
+                   <List.Item>
+                     <Field placeholder="请输入贷款金额" type="number" />
+                   </List.Item>
+                 </List>
+               </Group>
+               <Group header="所在律所:" noPadded>
+                 <List>
+                   <List.Item>
+                     <Field placeholder="请输入所在律所" type="text" />
+                   </List.Item>
+                 </List>
+               </Group>
+               <Group header="公司名称:" noPadded>
+                 <List>
+                   <List.Item>
+                     <Field placeholder="请输入公司名称" type="text" />
+                   </List.Item>
+                 </List>
+               </Group>
+               <Button className="login-button" onClick={this.handleSubmit}>提交</Button>
+               <div className="reader-box">
+                 <label><input type="checkbox" name="agree"/>阅读并同意</label>
+                 <span>《法务贷服务协议》</span>
+               </div>
+             </div>
+           </Tabs.Item>
+         </Tabs>
+       }
+       {
+         isFinish &&
+         <div className="finish-box" style={{height:this.state.htmlHeight+'px'}}>
+           <div className="check-group">
+             <Icon name="check"/>
+             <h1>申请成功</h1>
+           </div>
+           <p>您可登录 <a href="http://www.fawubao.com">www.fawubao.com</a> 个人中心查看贷款进度</p>
+         </div>
+       }
+     </div>
     );
   }
 }
